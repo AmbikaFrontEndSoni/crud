@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <input type="text" placeholder="enter value" id="inputVal" />
+    <button onclick="add()">Add</button>
+    <p id="error" style="color: red"></p>
+
+    <table border="1">
+      <thead>
+        <th>Items</th>
+        <th>Actions</th>
+      </thead>
+      <tbody class="todo_items"></tbody>
+    </table>
+
+    <script>
+      let arr = [];
+      let updateIndex = null;
+
+      displayItems();
+
+      function add() {
+        let inputVal = document.querySelector("#inputVal");
+        let error = document.querySelector("#error");
+        // let val = inputVal.value.trim();
+
+        // if (val === "") {
+        if (inputVal === "") {
+          error.textContent = "Input cannot be empty!";
+          return;
+        }
+
+        error.textContent = ""; // Clear any previous error message
+
+        if (updateIndex !== null) {
+          arr[updateIndex] = val;
+          updateIndex = null;
+        } else {
+          arr.push(val);
+        }
+
+        console.log(arr);
+        inputVal.value = "";
+        displayItems();
+      }
+
+      function displayItems() {
+        let items = document.querySelector(".todo_items");
+        let table_data = "";
+
+        for (let i = 0; i < arr.length; i++) {
+          table_data += `<tr>
+          <td>${arr[i]}</td>
+          <td>
+            <button onclick="deleteItem(${i})">Delete</button>
+            <button onclick="editItem(${i})">Update</button>
+          </td>
+        </tr>`;
+        }
+        items.innerHTML = table_data;
+      }
+
+      function deleteItem(index) {
+        arr.splice(index, 1);
+        displayItems();
+      }
+
+      function editItem(index) {
+        let inputVal = document.querySelector("#inputVal");
+        inputVal.value = arr[index];
+        updateIndex = index;
+      }
+    </script>
+  </body>
+</html>

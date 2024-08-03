@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>crud operation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="readAll">
+    <div class="container">
+      <div class="form_container">
+        <form class="create_form">
+          <input type="text" placeholder="enter a name" class="uname" />
+          <input type="text" placeholder="enter a email" class="uemail" />
+          <button type="button" onclick="add()">create</button>
+        </form>
+        <form class="update_form">
+          <input type="text" class="uname" />
+          <input type="text" class="uemail" />
+          <button type="button">update</button>
+        </form>
+
+        <div class="add_btn">
+          <button onclick="create()">Add+</button>
+        </div>
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+          </thead>
+          <tbody class="data_table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
